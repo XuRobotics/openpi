@@ -40,6 +40,14 @@ git submodule update --init --recursive
 
 We use [uv](https://docs.astral.sh/uv/) to manage Python dependencies. See the [uv installation instructions](https://docs.astral.sh/uv/getting-started/installation/) to set it up. Once uv is installed, run the following to set up the environment:
 
+
+Activate the uv environment
+```bash
+cd ~/openpi
+source .venv/bin/activate
+```
+
+
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 uv sync
 GIT_LFS_SKIP_SMUDGE=1 uv pip install -e .
@@ -80,6 +88,18 @@ By default, checkpoints are automatically downloaded from `gs://openpi-assets` a
 
 
 ## Running Inference for a Pre-Trained Model
+
+
+Activate the uv environment
+```bash
+cd ~/openpi
+source .venv/bin/activate
+```
+
+Run the inference code
+```
+python test_inference.py
+```
 
 Our pre-trained model checkpoints can be run with a few lines of code (here our $\pi_0$-FAST-DROID model):
 ```python
