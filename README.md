@@ -1,4 +1,71 @@
-# openpi
+## MSL Experiment Setup Guide
+
+Follow these instructions (condensed from the offical instructions) to get started with PI0.
+
+The rest of instructions are provided in the [xArm-MSL-ROS repo](https://github.com/XuRobotics/xArm-MSL-ROS)
+
+### Clone the Repository
+
+Clone the repository along with its submodules:
+
+```bash
+git clone --recurse-submodules git@github.com:XuRobotics/openpi.git
+```
+
+If you've already cloned the repository:
+
+```bash
+cd ~/openpi
+git submodule update --init --recursive
+```
+
+### Install Python Dependencies with `uv`
+
+Dependencies are managed using [uv](https://docs.astral.sh/uv/). If you haven't installed `uv` yet, follow the [uv installation instructions](https://docs.astral.sh/uv/getting-started/installation/).
+
+Activate the virtual environment:
+
+```bash
+cd ~/openpi
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 uv sync
+GIT_LFS_SKIP_SMUDGE=1 uv pip install -e .
+```
+
+### Run the Inference Code
+
+Activate the virtual environment:
+
+```bash
+cd ~/openpi
+source .venv/bin/activate
+```
+
+Execute the inference script:
+
+```bash
+python test_inference.py
+```
+
+
+
+
+
+
+
+=======================================================
+
+=======================================================
+
+=======================================================
+
+
+# Official OpenPI Documentation
 
 openpi holds open-source models and packages for robotics, published by the [Physical Intelligence team](https://www.physicalintelligence.company/).
 
