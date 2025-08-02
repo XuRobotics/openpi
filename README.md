@@ -2,7 +2,7 @@
 
 Follow these instructions (condensed from the offical instructions) to get started with PI0.
 
-The rest of instructions are provided in the [xArm-MSL-ROS repo](https://github.com/XuRobotics/xArm-MSL-ROS)
+More instructions on how to prepare xArm data, fine-tune the model, etc, are provided in the [xArm-MSL-ROS repo](https://github.com/XuRobotics/xArm-MSL-ROS)
 
 ### Clone the Repository
 
