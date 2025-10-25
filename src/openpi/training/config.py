@@ -752,6 +752,40 @@ _CONFIGS = [
         pytorch_weight_path="/path/to/your/pytorch_weight_path",
         num_train_steps=30_000,
     ),
+    TrainConfig(
+        name="pi05_custom_data_lora",
+        model=pi0_config.Pi0Config(
+            pi05=True,
+            action_dim=32,
+            action_horizon=16,
+            paligemma_variant="gemma_2b_lora",
+            action_expert_variant="gemma_300m_lora",
+        ),
+        data=LeRobotLiberoDataConfig(
+            repo_id="robot_joints_dataset_joint_space_HORIZON_400_ALL_IN_ONE_BAG_TEMP_REL",
+            base_config=DataConfig(
+                prompt_from_task=True,   # use per-frame "task" string as the prompt
+            ),
+            # actions are already 7 joints + 1 gripper. They’re absolute per frame; 
+            # set extra_delta_transform=False (we don't want a second delta step).
+            extra_delta_transform=False,
+        ),
+        batch_size=2,
+        weight_loader=weight_loaders.CheckpointWeightLoader(
+            "gs://openpi-assets/checkpoints/pi05_base/params"
+        ),
+        freeze_filter=pi0_config.Pi0Config(
+            pi05=True,
+            paligemma_variant="gemma_2b_lora",
+            action_expert_variant="gemma_300m_lora",
+        ).get_freeze_filter(),
+        ema_decay=None,
+        num_train_steps=20000,
+        lr_schedule=_optimizer.CosineDecaySchedule(
+            warmup_steps=1000, peak_lr=5e-5, decay_steps=200000, decay_lr=5e-5
+        ),
+        fsdp_devices=1,
+    ),
     #
     # Fine-tuning Aloha configs.
     #
